@@ -20,10 +20,6 @@ const toast = useToast();
 import {ref,computed} from 'vue';
 
 const transaction = ref([
-  { id: 1, text: "flower", amount: -19.99 },
-  { id: 2, text: "salary", amount: 299.97 },
-  { id: 3, text: "book", amount: -10 },
-  { id: 4, text: "camera", amount: 150 },
 ]);
 
 const total = computed(() => {

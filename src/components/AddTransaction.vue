@@ -1,7 +1,7 @@
 <template>
     <h3>Add new Transaction</h3>
-    <form id="form">
-        <div class="form-control" @submit.prevent="onSubmit">
+    <form id="form" @submit.prevent="onSubmit">
+        <div class="form-control">
             <label for="text">Text</label>
             <input type="text" id="text" v-model="text" placeholder="Enter Text ..." />
         </div>
@@ -9,7 +9,7 @@
             <label for="amount">Amount<br />(negative-expense , positive-income)</label>
             <input type="text" id="amount" v-model="amount" placeholder="Enter Amount ..." />
         </div>
-        <button class="btn">Add Transaction</button>
+        <button type="submit" class="btn">Add Transaction</button>
     </form>
 </template>
 
@@ -17,13 +17,15 @@
 import {ref} from 'vue';
 import {useToast} from 'vue-toastification'
 
-const Toast = useToast();
+const toast = useToast();
+const emit = defineEmits(["transactionSubmitted"]);
 
 const text = ref('');
 const amount = ref('');
 
 const onSubmit = () => {
-    if(!text.vale || !amount.value)
+    console.log("pradeep");
+    if(!text.value || !amount.value)
     {
         toast.error('Both field should be field!');
         return;
@@ -32,7 +34,7 @@ const onSubmit = () => {
         text:text.value,
         amount:parseFloat(amount.value),
     };
-    
+
     emit('transactionSubmitted' , transactiondata);
 
     text.value='';
